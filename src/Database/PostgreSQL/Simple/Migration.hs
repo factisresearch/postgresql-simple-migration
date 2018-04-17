@@ -255,6 +255,8 @@ data MigrationCommand
     -- ^ Performs a series of 'MigrationCommand's in sequence.
     deriving (Show, Eq, Read, Ord)
 
+instance Semigroup MigrationCommand where
+    (<>) = mappend
 instance Monoid MigrationCommand where
     mempty = MigrationCommands []
     mappend (MigrationCommands xs) (MigrationCommands ys) = MigrationCommands (xs ++ ys)
